@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Vignesh07s/inotebook/static/css/main.e6c13ad2.css",
+    "main.js": "/Vignesh07s/inotebook/static/js/main.25dff5a0.js",
+    "static/js/453.d724e79d.chunk.js": "/Vignesh07s/inotebook/static/js/453.d724e79d.chunk.js",
+    "index.html": "/Vignesh07s/inotebook/index.html",
+    "main.e6c13ad2.css.map": "/Vignesh07s/inotebook/static/css/main.e6c13ad2.css.map",
+    "main.25dff5a0.js.map": "/Vignesh07s/inotebook/static/js/main.25dff5a0.js.map",
+    "453.d724e79d.chunk.js.map": "/Vignesh07s/inotebook/static/js/453.d724e79d.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.25dff5a0.js"
+  ]
+}
