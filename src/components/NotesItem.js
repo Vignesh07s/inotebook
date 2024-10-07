@@ -10,7 +10,11 @@ export default function NotesItem(props) {
         context.deleteNote(id);
     };
     const onEditClick = (id) => {
-        
+        props.setFormvisible(true);
+        props.setTitle(note.title);
+        props.setDescription(note.description);
+        props.setCall("update");
+        props.setId(note._id);
     };
     return (
         <div className="card my-3">

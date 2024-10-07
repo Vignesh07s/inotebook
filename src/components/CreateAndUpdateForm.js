@@ -1,53 +1,38 @@
-import React, { useState, useContext } from 'react'
+import React,{useContext} from 'react'
 import NoteContext from '../context/notes/NoteContext';
 
-export default function CreateNote() {
+export default function CreateNote(props) {
+
     const context = useContext(NoteContext);
-    const [formVisible, setFormvisible] = useState(false);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-
-    const changeAddState = () => {
-        setFormvisible(!formVisible)
-    }
-
-    const onTitleChange = (e) => {
-        setTitle(e.target.value);
-    };
-
-    const onDescriptionChange = (e) => {
-        setDescription(e.target.value);
-    };
-
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        if (title.trim() === '') {
+        if (props.title.trim() === '') {
             alert('Invalid title');
             return;
         }
 
-        if (description.trim() === '') {
+        if (props.description.trim() === '') {
             alert("Invalid description")
             return;
         }
 
-        context.addNote(title, description);
-        setTitle('');
-        setDescription('');
-        changeAddState();
+        if(props.call==="add") context.addNote(props.title, props.description);
+        if(props.call==="update") context.updateNote(props.id,props.title, props.description);
+        props.setTitle('');
+        props.setDescription('');
+        props.changeAddState();
     }
     return (
         <div>
-            <i className="fa-solid fa-plus m-1" onClick={changeAddState}></i>
-            {formVisible && (
+            {props.formVisible && (
                 <form action="#" onSubmit={handleOnSubmit}>
                     <div className="mb-3">
                         <label htmlFor="title" className="form-label my-0"><h5>Title</h5></label>
-                        <input type="text" className="form-control my-0" id="title" placeholder="Enter the title" required onChange={onTitleChange} />
+                        <input type="text" className="form-control my-0" id="title" placeholder="Enter the title" required onChange={props.onTitleChange} value={props.title} />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="description" className="form-label my-0"><h5>Description</h5></label>
-                        <textarea className="form-control my-0" id="description" rows="9" placeholder='Enter the desription' required onChange={onDescriptionChange}></textarea>
+                        <textarea className="form-control my-0" id="description" rows="9" placeholder='Enter the desription' required onChange={props.onDescriptionChange} value={props.description}></textarea>
                     </div>
                     <button type='submit' className='btn btn-primary'>Add note</button>
                 </form>

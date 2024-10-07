@@ -24,7 +24,6 @@ const NoteState = (props) => {
             }
 
             const initialNotes = await response.json();
-            console.log("test");
             setNotes(initialNotes);
         } catch (error) {
             console.error("Error fetching notes: ", error);
@@ -54,11 +53,7 @@ const NoteState = (props) => {
                 throw new Error("Failed to fetch notes");
             }
 
-            setNotes(notes.concat({
-                "title": title,
-                "description": description,
-                "tag": tag,
-            }));
+            await fetchNotes();
         } catch (error) {
             console.error("Error adding notes: ", error);
         }
@@ -66,20 +61,26 @@ const NoteState = (props) => {
 
 
     //Update a Note function
-    const updateNote = async (id,title,description,tag="General") => {
-        const response = await fetch("http://localhost:5000/api/notes/deletenote/" + id, {
-            method: "DELETE",
-            mode: "cors",
-            headers: {
-                "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwMjYyYjZhNTM2ZmQ2MWIwNjJjMWFiIn0sImlhdCI6MTcyODIwOTYwOX0.DSmj6kWnnnomd3flwOjgGOGCHMT2P8gaW1ao0Do46zA",
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ title, description, tag })
-        });
-        
-        if (!response.ok) {
-            throw new Error("Failed to fetch notes");
+    const updateNote = async (id, title, description, tag = "General") => {
+        try {
+            const response = await fetch("http://localhost:5000/api/notes/updatenotes/" + id, {
+                method: "PUT",
+                mode: "cors",
+                headers: {
+                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwMjYyYjZhNTM2ZmQ2MWIwNjJjMWFiIn0sImlhdCI6MTcyODIwOTYwOX0.DSmj6kWnnnomd3flwOjgGOGCHMT2P8gaW1ao0Do46zA",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ title, description, tag })
+            });
+
+            if (!response.ok) {
+                throw new Error("Failed to fetch notes");
+            }
+            await fetchNotes();
+        } catch (error) {
+            console.error(error)
         }
+
     }
 
 
@@ -111,7 +112,7 @@ const NoteState = (props) => {
     // }
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, deleteNote }}>
+        <NoteContext.Provider value={{ notes, addNote, deleteNote, updateNote }}>
             {props.children}
         </NoteContext.Provider>
     )
