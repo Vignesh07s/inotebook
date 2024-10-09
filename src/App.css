@@ -1,20 +1,41 @@
-i{
+i {
     cursor: pointer;
 }
 
-.notes-color {
+.notes-header {
     background-image: linear-gradient(to right, red, rgb(216, 216, 100), blue);
     background-clip: text;
     color: transparent;
-    font-size: 60px;
 }
 
-.fa-tag{
+.fa-tag {
     cursor: auto;
 }
 
-hr{
+hr {
     height: 1vh;
     border-radius: 5px;
     background-image: linear-gradient(to right, red 25%, green 50%, blue 75%, red 100%);
 }
+
+
+input {
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+textarea {
+    resize: none;
+    border: none;
+    outline: none;
+    height: 50vh;
+}
+
+
+.alert {
+    position: fixed;
+    width: 20vw;    
+    right: 0px;     
+    z-index: 3;
+  }

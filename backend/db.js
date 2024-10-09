@@ -11,4 +11,4 @@ const connectToMingo = async () =>{
     });
 }
 
-module.exports = connectToMingo;//explain this
+module.exports = connectToMingo;

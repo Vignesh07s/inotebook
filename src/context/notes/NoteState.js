@@ -1,11 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import NoteContext from './NoteContext';
 
 const NoteState = (props) => {
     const [notes, setNotes] = useState([]);
-    useEffect(() => {
-        fetchNotes();
-    }, []);
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+
+    const updateShowAlert = () => {
+        setShowAlert(!showAlert);
+        setTimeout(() => {
+            setShowAlert(false);
+        }, 3000);
+    }
+
+    const updateAlertMessage = (message) => {
+        setAlertMessage(message);
+
+    }
 
     //fetchNotes request
     const fetchNotes = async () => {
@@ -14,7 +25,7 @@ const NoteState = (props) => {
                 method: "POST",
                 mode: "cors",
                 headers: {
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwMjYyYjZhNTM2ZmQ2MWIwNjJjMWFiIn0sImlhdCI6MTcyODIwOTYwOX0.DSmj6kWnnnomd3flwOjgGOGCHMT2P8gaW1ao0Do46zA",
+                    "auth-token": localStorage.getItem('token'),
                     "Content-Type": "application/json"
                 }
             });
@@ -37,7 +48,7 @@ const NoteState = (props) => {
                 method: "POST",
                 mode: "cors",
                 headers: {
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwMjYyYjZhNTM2ZmQ2MWIwNjJjMWFiIn0sImlhdCI6MTcyODIwOTYwOX0.DSmj6kWnnnomd3flwOjgGOGCHMT2P8gaW1ao0Do46zA",
+                    "auth-token": localStorage.getItem('token'),
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ title, description, tag })
@@ -46,6 +57,7 @@ const NoteState = (props) => {
             if (response.status === 409) {
                 const errorData = await response.json();
                 const errorMessage = errorData.error || "A conflict occurred.";
+                console.error("Error data:", errorMessage);
                 return;
             }
 
@@ -67,13 +79,15 @@ const NoteState = (props) => {
                 method: "PUT",
                 mode: "cors",
                 headers: {
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwMjYyYjZhNTM2ZmQ2MWIwNjJjMWFiIn0sImlhdCI6MTcyODIwOTYwOX0.DSmj6kWnnnomd3flwOjgGOGCHMT2P8gaW1ao0Do46zA",
+                    "auth-token": localStorage.getItem('token'),
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify({ title, description, tag })
             });
 
             if (!response.ok) {
+                const errorData = await response.json();
+                console.error("Error data:", errorData);
                 throw new Error("Failed to fetch notes");
             }
             await fetchNotes();
@@ -93,7 +107,7 @@ const NoteState = (props) => {
                 method: "DELETE",
                 mode: "cors",
                 headers: {
-                    "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjcwMjYyYjZhNTM2ZmQ2MWIwNjJjMWFiIn0sImlhdCI6MTcyODIwOTYwOX0.DSmj6kWnnnomd3flwOjgGOGCHMT2P8gaW1ao0Do46zA",
+                    "auth-token": localStorage.getItem('token'),
                     "Content-Type": "application/json"
                 },
             });
@@ -112,7 +126,7 @@ const NoteState = (props) => {
     // }
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, deleteNote, updateNote }}>
+        <NoteContext.Provider value={{ notes, fetchNotes,addNote, deleteNote, updateNote, updateShowAlert, updateAlertMessage, showAlert, alertMessage }}>
             {props.children}
         </NoteContext.Provider>
     )

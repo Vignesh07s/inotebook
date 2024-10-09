@@ -39,7 +39,6 @@ router.post("/readnotes", fetchuser, async (req, res) => {
     try {
         const notes = await Note.find({ user: req.user.id });
         res.send(notes)
-        console.log("Saved notes count : " + notes.length)
     } catch (error) {
         console.error(error);
         res.send("Internal server error")
