@@ -5,6 +5,7 @@ const NoteState = (props) => {
     const [notes, setNotes] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
+    const url = "https://inotebook-backend-aenu.onrender.com";
 
     const updateShowAlert = () => {
         setShowAlert(!showAlert);
@@ -21,7 +22,7 @@ const NoteState = (props) => {
     //fetchNotes request
     const fetchNotes = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/notes/readnotes", {
+            const response = await fetch(`${url}/api/notes/readnotes`, {
                 method: "POST",
                 mode: "cors",
                 headers: {
@@ -44,7 +45,7 @@ const NoteState = (props) => {
     //Add note function
     const addNote = async (title, description, tag = "general") => {
         try {
-            const response = await fetch("http://localhost:5000/api/notes/addnotes", {
+            const response = await fetch(`${url}/api/notes/addnotes`, {
                 method: "POST",
                 mode: "cors",
                 headers: {
@@ -75,7 +76,7 @@ const NoteState = (props) => {
     //Update a Note function
     const updateNote = async (id, title, description, tag = "General") => {
         try {
-            const response = await fetch("http://localhost:5000/api/notes/updatenotes/" + id, {
+            const response = await fetch(`${url}/api/notes/updatenotes/` + id, {
                 method: "PUT",
                 mode: "cors",
                 headers: {
@@ -103,7 +104,7 @@ const NoteState = (props) => {
     //Delete note function
     const deleteNote = async (id) => {
         try {
-            const response = await fetch("http://localhost:5000/api/notes/deletenote/" + id, {
+            const response = await fetch(`${url}/api/notes/deletenote/` + id, {
                 method: "DELETE",
                 mode: "cors",
                 headers: {

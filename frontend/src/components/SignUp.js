@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import NoteContext from '../context/notes/NoteContext';
 
 export default function SignUp() {
+  const url = "https://inotebook-backend-aenu.onrender.com";
   const context = useContext(NoteContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -16,7 +17,7 @@ export default function SignUp() {
       setCpasswordText("Password do not match");
       return;
     }
-    const response = await fetch('http://localhost:5000/api/auth/createUser', {
+    const response = await fetch(`${url}/api/auth/createUser`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

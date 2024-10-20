@@ -2,12 +2,13 @@ import React, { useState} from 'react';
 import { useNavigate,Link } from 'react-router-dom';
 
 export default function Login() {
+    const url = "https://inotebook-backend-aenu.onrender.com";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
     const validateUser = async (e) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:5000/api/auth/login', {
+        const response = await fetch(`${url}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
