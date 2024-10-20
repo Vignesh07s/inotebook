@@ -5,7 +5,10 @@ var cors = require('cors')
 connectToMongo();
 const port = process.env.PORT || 4000;
 
-app.use(cors())
+// app.use(cors())
+app.use(cors({
+  origin: 'https://inotebook-tf2a.onrender.com' // Update with your actual frontend URL
+}));
 app.use(express.json())
 
 app.use("/api/auth", require("./routes/auth"));
