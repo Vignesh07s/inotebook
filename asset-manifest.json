@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/inotebook/static/css/main.775393f9.css",
-    "main.js": "/inotebook/static/js/main.3fc88316.js",
+    "main.js": "/inotebook/static/js/main.a0d71b1a.js",
     "index.html": "/inotebook/index.html",
     "main.775393f9.css.map": "/inotebook/static/css/main.775393f9.css.map",
-    "main.3fc88316.js.map": "/inotebook/static/js/main.3fc88316.js.map"
+    "main.a0d71b1a.js.map": "/inotebook/static/js/main.a0d71b1a.js.map"
   },
   "entrypoints": [
     "static/css/main.775393f9.css",
-    "static/js/main.3fc88316.js"
+    "static/js/main.a0d71b1a.js"
   ]
 }
