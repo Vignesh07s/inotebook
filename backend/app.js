@@ -7,7 +7,8 @@ const port = process.env.PORT || 4000;
 
 // app.use(cors())
 app.use(cors({
-  origin: 'https://inotebook-tf2a.onrender.com' // Update with your actual frontend URL
+  // origin: 'https://inotebook-tf2a.onrender.com' // Update with your actual frontend URL
+  origin: 'http://localhost:3000/inotebook'
 }));
 app.use(express.json())
 
