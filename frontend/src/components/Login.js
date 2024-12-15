@@ -2,7 +2,8 @@ import React, { useState} from 'react';
 import { useNavigate,Link } from 'react-router-dom';
 
 export default function Login() {
-    const url = "https://inotebook-backend-aenu.onrender.com";
+    // const url = "https://inotebook-backend-aenu.onrender.com";
+    const url = "http://localhost:4000";
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();

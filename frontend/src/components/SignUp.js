@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import NoteContext from '../context/notes/NoteContext';
 
 export default function SignUp() {
-  const url = "https://inotebook-backend-aenu.onrender.com";
+  // const url = "https://inotebook-backend-aenu.onrender.com";
+  const url = "http://localhost:4000";
   const context = useContext(NoteContext);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
