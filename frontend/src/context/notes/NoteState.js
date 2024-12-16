@@ -5,7 +5,7 @@ const NoteState = (props) => {
     const [notes, setNotes] = useState([]);
     const [showAlert, setShowAlert] = useState(false);
     const [alertMessage, setAlertMessage] = useState("");
-    const url = "https://inotebook-backend-aenu.onrender.com";
+    const url = process.env.REACT_APP_BACKEND_URL
 
     const updateShowAlert = () => {
         setShowAlert(!showAlert);
