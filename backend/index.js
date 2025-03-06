@@ -8,7 +8,12 @@ const app = express();
 connectToMongo();
 
 // Middleware
-app.use(cors({ origin: '*' }));
+app.use(cors({
+  origin: ['https://inotebook777.vercel.app', 'http://localhost:3000'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // API Routes
@@ -23,7 +28,7 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Backend running on http://localhost:${PORT}`);
+  console.log(`Backend running on http://localhost:${PORT}`);
 });
 
 

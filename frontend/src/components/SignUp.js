@@ -19,11 +19,11 @@ export default function SignUp() {
   const registerUser = async (e) => {
     e.preventDefault();
     setError("");
-    setLoading(true); // Start loading
+    setLoading(true);
 
     if (password !== cpassword) {
       setError("Passwords do not match");
-      setLoading(false); // Stop loading
+      setLoading(false);
       return;
     }
 
@@ -47,7 +47,7 @@ export default function SignUp() {
     } catch (error) {
       setError("Network error. Please check your connection.");
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -55,8 +55,6 @@ export default function SignUp() {
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div className="card shadow-lg p-4" style={{ width: "100%", maxWidth: "400px" }}>
         <h2 className="text-center mb-3">Create an Account</h2>
-
-        {error && <div className="alert alert-danger text-center">{error}</div>}
 
         <form onSubmit={registerUser}>
           <div className="mb-3">
@@ -142,6 +140,7 @@ export default function SignUp() {
               "Sign Up"
             )}
           </button>
+          {error && <p className="text-danger text-center small mt-2">{error}</p>}
         </form>
 
         <p className="text-center mt-3">
