@@ -27,7 +27,7 @@ export default function App() {
             <Route exact path="/login" element={<Login />} />
             <Route exact path="/signup" element={<SignUp />} />
             <Route exact path="/forgotpassword" element={<ForgotPassword />} />
-            <Route path="*" element={<NotFound/>} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Router>
       </NoteState>

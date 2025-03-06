@@ -20,5 +20,12 @@ app.get('/', (req, res) => {
   res.send('This is the homepage for backend');
 });
 
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+    console.log(`Backend running on http://localhost:${PORT}`);
+});
+
+
 // Export the app for Vercel
 module.exports = app;
